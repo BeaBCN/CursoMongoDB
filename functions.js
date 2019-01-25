@@ -1,0 +1,12 @@
+db.system.js.save({_id:"InsertAlumno", value:function(idA,Nom,Ape,Ident){return db.alumno.insertOne( { idAlumno: idA, Nombre: Nom, Apellido: Ape, DNI: Ident } );;}});
+db.loadServerScripts();
+var a = InsertAlumno (200001, 'Prueba','Insert','11111111H');
+db.system.js.save({_id:"UpdateAlumno",value: function(idA) {return db.alumno.updateMany({ "idAlumno": { $lt: idA } },{$set: { "Nombre": "PRUEBAUPDATE" }  });;}});
+db.loadServerScripts();
+var a = UpdateAlumno(9);
+db.system.js.save({_id:"DeleteAlumno", value:function(idA){return db.alumno.deleteMany( { idAlumno: { $gt : idA } } );;}});
+db.loadServerScripts();
+var a = DeleteAlumno(100);
+db.system.js.save({_id:"ReadAlumno", value:function(idA){return db.alumno.find( { idAlumno: { $gt : idA } } );;}});
+db.loadServerScripts();
+var a = ReadAlumno(5);
